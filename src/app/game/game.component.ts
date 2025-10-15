@@ -7,14 +7,15 @@ import { Game } from '../../models/game';
   standalone: true,
   imports: [NgForOf, CommonModule],
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
+  currentCard: string = '';
   game!: Game;
 
   ngOnInit(): void {
-    this.newGame(); 
+    this.newGame();
   }
 
   newGame() {
@@ -23,6 +24,12 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
+    if(!this.pickCardAnimation)
+    this.currentCard = this.game.stack.pop() as string;
     this.pickCardAnimation = true;
+
+    setTimeout(() => {
+      this.pickCardAnimation = false;
+    }, 1500);
   }
 }
