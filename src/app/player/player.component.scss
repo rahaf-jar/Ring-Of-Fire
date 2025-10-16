@@ -11,7 +11,8 @@
         margin-left: 16px;
     }
 
-    background-color: hsla(0, 89%, 30%, 0.577);
+    background-color: hsla(0, 9%, 17%, 0.578);
+    color: white;
 
     img{
         width: 50px;
@@ -19,4 +20,8 @@
         object-fit: cover;
         border-radius: 100%;
     }
+}
+
+.player-active{
+    background-color: hsla(0, 89%, 30%, 0.577) !important;
 }
