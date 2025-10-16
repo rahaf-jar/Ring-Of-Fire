@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-player',
@@ -9,5 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './player.component.scss'
 })
 export class PlayerComponent {
+
+  @Input() name: string = '';
 
 }
