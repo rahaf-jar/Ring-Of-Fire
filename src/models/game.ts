@@ -4,12 +4,14 @@ export class Game {
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
 
-    constructor(){
-        for(let i=0; i < 14; i++){
-            this.stack.push('ace_' + i);
-            this.stack.push('clubs_' + i);
-            this.stack.push('diamonds_' + i);
-            this.stack.push('hearts_' + i);
+    constructor() {
+        const suits = ['hearts', 'diamonds', 'clubs', 'ace'];
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
+
+        for (let suit of suits) {
+            for (let value of values) {
+                this.stack.push(`${suit}_${value}`);
+            }
         }
 
         shuffle(this.stack);
@@ -17,16 +19,17 @@ export class Game {
 }
 
 function shuffle(array: any[]) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, randomIndex;
 
     while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        temporaryValue = array[currentIndex];
-        array[currentIndex], array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]
+        ];
     }
 
     return array;
-}   
+}
+
