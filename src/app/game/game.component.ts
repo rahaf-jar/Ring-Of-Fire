@@ -9,7 +9,6 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { MatDialogModule } from '@angular/material/dialog';
 import { GameInfoComponent } from '../game-info/game-info.component';
 
-
 @Component({
   selector: 'app-game',
   standalone: true,
@@ -20,7 +19,7 @@ import { GameInfoComponent } from '../game-info/game-info.component';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    GameInfoComponent
+    GameInfoComponent,
   ],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
@@ -61,7 +60,9 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      this.game.players.push(name);
+      if (name && name.length >= 3) {
+        this.game.players.push(name);
+      }
     });
   }
 }
